@@ -1,31 +1,36 @@
 package com.diachenko.pokergame.ui.activities;
 
 import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.diachenko.pokergame.R;
-import com.diachenko.pokergame.data.ApplicationMode;
-import com.diachenko.pokergame.data.InternetConnector;
-import com.diachenko.pokergame.data.ModeChecker;
+import com.diachenko.pokergame.utils.appmode.ApplicationMode;
 import com.diachenko.pokergame.ui.viewmodels.MainScreenViewModel;
-import com.diachenko.pokergame.ui.viewmodels.MainScreenViewModelFactory;
 
-import java.util.concurrent.Executor;
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjection;
 
 public class MainActivity extends AppCompatActivity {
 
-    Executor executor;
-    InternetConnector connector;
-    ModeChecker modeChecker;
+    @Inject
+    ViewModelProvider.Factory viewModelProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-        MainScreenViewModel viewModel = ViewModelProviders.of(this
-                ,new MainScreenViewModelFactory(executor,modeChecker,connector))
+
+        MainScreenViewModel viewModel = ViewModelProviders.of(this,viewModelProvider)
                 .get(MainScreenViewModel.class);
         viewModel.checkMode(this).observe(this, new Observer<ApplicationMode>() {
             @Override
@@ -34,10 +39,12 @@ public class MainActivity extends AppCompatActivity {
                     case LINK:
                         WebViewActivity.startActivity(MainActivity.this,
                                 applicationMode.getUrl());
+                        finish();
                         return;
                     case APPLICATION:
                     case OTHER:
                         GameActivity.startActivity(MainActivity.this);
+                        finish();
                 }
             }
         });

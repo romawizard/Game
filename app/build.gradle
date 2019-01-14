@@ -34,4 +34,14 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    // Dagger
+    // Dagger Core
+    implementation "com.google.dagger:dagger:2.20"
+    annotationProcessor "com.google.dagger:dagger-compiler:2.20"
+    // Dagger Android
+    annotationProcessor "com.google.dagger:dagger-android-processor:2.20"
+    implementation "com.google.dagger:dagger-android-support:2.20"
+
+    implementation 'com.google.code.gson:gson:2.8.2'
 }

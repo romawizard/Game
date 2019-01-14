@@ -1,4 +1,4 @@
-package com.diachenko.pokergame.data;
+package com.diachenko.pokergame.utils.appmode;
 
 public class ApplicationMode {
 
