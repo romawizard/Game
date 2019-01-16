@@ -1,6 +1,7 @@
 package com.diachenko.pokergame.webview;
 
 import android.annotation.TargetApi;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
@@ -43,13 +44,24 @@ public class MyWebViewClient extends WebViewClient {
         }
     }
 
+    @Override
+    public void onPageStarted(WebView view, String url, Bitmap favicon) {
+        super.onPageStarted(view, url, favicon);
+        if (listener != null){
+            listener.onPageStarted();
+        }
+    }
+
     public void setListener(WebViewClientListener listener) {
         this.listener = listener;
     }
+
 
     public interface WebViewClientListener{
         void onPageFinished();
 
         void onReceivedError(String msg);
+
+        void onPageStarted();
     }
 }

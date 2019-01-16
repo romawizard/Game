@@ -108,4 +108,9 @@ public class WebViewActivity extends AppCompatActivity implements MyWebViewClien
         Toast.makeText(this, "Oh no! " + msg, Toast.LENGTH_SHORT).show();
         swipeRefresh.setRefreshing(false);
     }
+
+    @Override
+    public void onPageStarted() {
+        swipeRefresh.setRefreshing(true);
+    }
 }
