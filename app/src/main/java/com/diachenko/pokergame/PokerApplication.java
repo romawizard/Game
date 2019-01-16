@@ -20,11 +20,14 @@ public class PokerApplication extends Application implements HasActivityInjector
     @Override
     public void onCreate() {
         super.onCreate();
+        initDagger();
+    }
+
+    private void initDagger() {
         DaggerApplicationComponent.builder()
                 .application(this)
                 .build()
                 .inject(this);
-
     }
 
     @Override

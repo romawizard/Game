@@ -31,9 +31,6 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-        <activity android:name=".ui.activities.GameActivity">
-
-        </activity>
     </application>
 
 </manifest>

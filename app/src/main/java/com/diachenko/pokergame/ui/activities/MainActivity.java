@@ -46,9 +46,7 @@ public class MainActivity extends AppCompatActivity {
                         return;
                     case APPLICATION:
                     case OTHER:
-//                        GameActivity.startActivity(MainActivity.this);
-                        Intent intent = new Intent(MainActivity.this, MatchesGameActivity.class);
-                        startActivity(intent);
+                        MatchesGameActivity.startActivity(MainActivity.this);
                         finish();
                 }
             }
