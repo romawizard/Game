@@ -3,6 +3,7 @@ package com.diachenko.pokergame.ui.activities;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
@@ -11,6 +12,7 @@ import android.view.WindowManager;
 import com.diachenko.pokergame.R;
 import com.diachenko.pokergame.utils.appmode.ApplicationMode;
 import com.diachenko.pokergame.ui.viewmodels.MainScreenViewModel;
+import com.snatik.matches.MatchesGameActivity;
 
 import javax.inject.Inject;
 
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_main);
 
         MainScreenViewModel viewModel = ViewModelProviders.of(this,viewModelProvider)
@@ -43,7 +46,9 @@ public class MainActivity extends AppCompatActivity {
                         return;
                     case APPLICATION:
                     case OTHER:
-                        GameActivity.startActivity(MainActivity.this);
+//                        GameActivity.startActivity(MainActivity.this);
+                        Intent intent = new Intent(MainActivity.this, MatchesGameActivity.class);
+                        startActivity(intent);
                         finish();
                 }
             }

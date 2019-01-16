@@ -13,6 +13,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import javax.inject.Singleton;
+import javax.net.ssl.HttpsURLConnection;
 
 @Singleton
 public class BaseNetworkRequest implements NetworkRequest {
@@ -22,14 +23,14 @@ public class BaseNetworkRequest implements NetworkRequest {
     @Override
     public JSONObject request(String url) {
 
-        HttpURLConnection connection;
+        HttpsURLConnection connection;
         BufferedReader reader;
         JSONObject jsonObject = null;
 
         try {
             URL myUrl = new URL(url);
 
-            connection = (HttpURLConnection) myUrl.openConnection();
+            connection = (HttpsURLConnection) myUrl.openConnection();
             connection.setRequestMethod("GET");
             connection.connect();
 

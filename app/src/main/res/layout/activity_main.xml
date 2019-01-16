@@ -13,7 +13,7 @@
         android:layout_height="0dp"
         android:contentDescription="@string/placeholder_mainscreen"
         android:scaleType="centerCrop"
-        android:src="@drawable/poker_large"
+        android:src="@drawable/background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
